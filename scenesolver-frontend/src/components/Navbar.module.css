@@ -1,0 +1,202 @@
+/* REPLACE ALL OF Navbar.module.css WITH THIS */
+.navbar {
+  background: var(--background-dark);
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.navbarContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.navLogo {
+  color: var(--text-headings);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.navMenu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  text-align: center;
+}
+
+.navItem {
+  height: 80px;
+}
+
+.navLink {
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  height: 100%;
+  transition: all 0.2s ease;
+  font-weight: bold;
+}
+
+.navLink:hover {
+  color: var(--primary-color);
+}
+
+.navLink.active {
+    color: var(--primary-color);
+}
+
+.logoutButtonMobile {
+    display: none;
+}
+
+.menuIcon {
+  display: none;
+}
+
+
+/* --- NEW Profile Dropdown --- */
+.profileContainer {
+    position: relative;
+    display: block; /* Show on desktop */
+}
+
+.profileButton {
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.profileButton:hover {
+    color: var(--primary-color);
+}
+
+.profileDropdown {
+    position: absolute;
+    top: 60px; /* Position below button */
+    right: 0;
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 200px;
+    overflow: hidden;
+    animation: fadeInDropdown 0.2s ease-out;
+}
+
+@keyframes fadeInDropdown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.dropdownItem {
+    display: block;
+    padding: 1rem;
+    color: var(--text-light);
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdownItem:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.logoutItem {
+    cursor: pointer;
+}
+
+/* --- Mobile Responsiveness --- */
+@media screen and (max-width: 960px) {
+  .navMenu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    transition: all 0.5s ease;
+    background: #000;
+    padding-top: 2rem;
+  }
+
+  .navMenu.active { left: 0; }
+  .navItem { width: 100%; height: auto; }
+  .navLink { text-align: center; padding: 1.5rem; width: 100%; display: table; font-size: 1.5rem; }
+  
+  .profileContainer { display: none; } /* Hide desktop profile icon on mobile */
+
+  .menuIcon { display: block; font-size: 1.8rem; cursor: pointer; color: var(--text-light); }
+
+  .logoutButtonMobile {
+    display: block;
+  }
+  .logoutButtonMobile button {
+    text-align: center;
+    padding: 1.2rem;
+    margin: 1.5rem auto;
+    border-radius: var(--border-radius);
+    width: 80%;
+    background: var(--primary-color);
+    color: var(--text-headings);
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+}/* Add these styles to your Navbar.module.css file */
+
+.profileButton {
+  /* ... your existing styles for profileButton ... */
+  display: flex; /* This is key for aligning icon and text */
+  align-items: center;
+  gap: 8px; /* Creates a nice space between the icon and the name */
+}
+
+.profileIcon {
+  /* If you need to adjust the icon size specifically */
+  font-size: 1.5rem;
+}
+
+.userName {
+  font-weight: 500;
+  display: block; /* Ensures consistent alignment */
+}
+
+/* New styles for the dropdown header */
+.dropdownHeader {
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border-color, #eee);
+  color: var(--text-dark, #666);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.dropdownHeader strong {
+  color: var(--text-headings, #333);
+  font-size: 1rem;
+}
