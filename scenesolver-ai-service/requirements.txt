@@ -1,4 +1,4 @@
-# --- Verified Compatible AI/ML Libraries ---
+# --- Core AI/ML Libraries ---
 torch==2.1.2
 torchvision==0.16.2
 torchaudio==2.1.2
@@ -7,7 +7,9 @@ ultralytics==8.0.229
 accelerate==0.25.0
 Pillow==10.1.0
 
-# --- Web Service Libraries ---
+# --- Web Service & API ---
 Flask==3.0.0
 python-multipart==0.0.6
 opencv-python-headless==4.8.1.78
+gunicorn==21.2.0  # ← Added for production server
+requests==2.31.0  # ← Needed for downloading model files
