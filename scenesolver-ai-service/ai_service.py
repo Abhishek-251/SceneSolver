@@ -13,6 +13,16 @@ from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 import traceback
 
+def download_model_if_missing(local_path, url):
+    os.makedirs(os.path.dirname(local_path), exist_ok=True)
+    if not os.path.exists(local_path):
+        print(f"📥 Downloading {local_path} from Google Drive...")
+        response = requests.get(url)
+        with open(local_path, 'wb') as f:
+            f.write(response.content)
+        print(f"✅ Downloaded: {local_path}")
+
+
 # --- Flask App Initialization ---
 app = Flask(__name__)
 UPLOAD_FOLDER = 'uploads'
@@ -43,9 +53,9 @@ evidence_labels = {0: "fire", 1: "smoke", 2: "fighting", 3: "gun", 4: "knife", 5
 CLIP_MODEL_PATH = os.path.join('models', 'visual_clip_classifier.pt')
 YOLO_MODEL_PATH = os.path.join('models', 'evidence_best_epoch50.pt')
 
-if not os.path.exists(CLIP_MODEL_PATH) or not os.path.exists(YOLO_MODEL_PATH):
-    print(f"🚨 CRITICAL ERROR: Make sure model files exist at '{CLIP_MODEL_PATH}' and '{YOLO_MODEL_PATH}'.")
-    exit()
+# Download model files if missing
+download_model_if_missing(CLIP_MODEL_PATH, "https://drive.google.com/uc?id=1mp2N-sw4U1XtEujzluOEWaGkW8P8HZ47")
+download_model_if_missing(YOLO_MODEL_PATH, "https://drive.google.com/uc?id=1TVM2b8VBk_k1AO_E6jXAmj4niVhhXgob")
 
 # Load models (CLIP, YOLO, BLIP, BART)...
 clip_base = CLIPModel.from_pretrained("openai/clip-vit-base-patch32")
@@ -53,9 +63,12 @@ visual_clip_model = VisualCLIPClassifier(clip_base, num_classes=5)
 visual_clip_model.load_state_dict(torch.load(CLIP_MODEL_PATH, map_location="cpu"))
 visual_clip_model.eval()
 clip_processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32")
+
 yolo_model = YOLO(YOLO_MODEL_PATH)
+
 blip_processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
 blip_model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-base").eval()
+
 summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
 print("✅ AI models loaded successfully.")
