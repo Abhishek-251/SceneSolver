@@ -41,7 +41,7 @@ python -m venv venv
 pip install -r requirements.txt
 python ai_service.py
 
-### Backend 2 : Node.js API
+### 🔧 Backend 2: Node.js API
 
 ```bash
 cd scenesolver-backend
@@ -55,7 +55,8 @@ PORT=5000
 Then start the backend:
 npm start
 
-###Frontend (React):
+### 🔧 Frontend(React):
+
 
 ```bash
 cd scenesolver-frontend
