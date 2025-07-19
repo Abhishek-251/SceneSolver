@@ -1,6 +1,6 @@
 # 🧠 SceneSolver
 
-**SceneSolver** is an AI-powered video analysis tool that detects and summarizes potential criminal activity in visual scenes. It combines advanced models like **CLIP**, **YOLOv8**, **BLIP2**, and **BART** within a full-stack **MERN + Flask** architecture.
+**SceneSolver** is an AI-powered video analysis tool that detects and summarizes potential criminal activity in visual scenes. It combines advanced models like **CLIP**, **YOLOv8**, **BLIP**, and **BART** within a full-stack **MERN + Flask** architecture.
 
 ---
 
@@ -21,7 +21,7 @@
 SceneSolver2/
 ├── scenesolver-frontend/       # React.js frontend
 ├── scenesolver-backend/        # Node.js + Express backend (auth, DB)
-├── scenesolver-ai-service/     # Flask AI service (CLIP, YOLO, BLIP2, BART)
+├── scenesolver-ai-service/     # Flask AI service (CLIP, YOLO, BLIP, BART)
 ├── .gitignore
 ├── README.md
 ```
