@@ -136,3 +136,4 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 ## 👋 Author
 
 Developed by [Aayush Chonkar](https://github.com/codespeed24)
+             [Abhishek Singh](https://github.com/Abhishek-251)
